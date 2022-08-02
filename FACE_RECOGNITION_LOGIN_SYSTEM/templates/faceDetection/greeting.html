@@ -1,0 +1,86 @@
+<!Doctype HTML>
+{% load static %}
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>
+            Voice Search
+        </title>
+        <!--Bootstrap css framework-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&display=swap" rel="stylesheet">
+        <!--JS, Popper.js and Jquery-->
+        <!--jquery csn-->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <!--icons-->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <!--bootstrap javascript-->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/5d93c68aaf.js" crossorigin="anonymous"></script>
+        <link href="{% static 'customStyle.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <!--header-->
+        <div class="container" style="max-width: 100%;">
+          <div class="header">
+          </div>
+        </div>
+        <div class="container" style="max-width: 100%;">
+          <div class="row">
+            <!--voice search div tag-->
+            <div class="col-lg-6">
+              <div class="mainContent">
+                <!--logo-->
+                <div>
+                  <p></p>
+                  <p></p>
+                </div>
+                <div><p></p><h2 class="displa-3">Voice Search</h2></div>
+                <p></p>
+                <p></p>
+                <!--search bar block-->
+                <form class="gap" action="texttosearch" method='post'>
+                  {% csrf_token %}
+                  <input type="text" name="TextInput" name="" placeholder="Enter Text....">
+                  <button type="submit" name="searchButton" class="btn btn-outline-primary">Search</button>
+                </form>
+                <p></p>
+                <div style="color: grey;">--OR--</div>
+                <div>
+                  <form action = "speaktosearch" method = 'post'>
+                    {% csrf_token %}
+                    <input type = "hidden" name = 'speechToText'>
+                    <p></p>
+                    <button class = "btn btn-outline-warning">
+                        Speak
+                    </button>
+                </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <!--recent search block-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="sidebarContent" style="border-style: double; color: grey; min-height: 510px;">
+                    <p></p>
+                    <u>Most recent searches</u>
+                    <p></p>
+                    <p></p>
+                    {% for recent in recent_searches %}
+                      <p style="color: khaki;">{{ recent }}</p>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </body>
+</html>
